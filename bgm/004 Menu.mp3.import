@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/004 Menu.mp3-868e82d6eda0b17109a7aeccd18498cc.mp3str"
+
+[deps]
+
+source_file="res://bgm/004 Menu.mp3"
+dest_files=[ "res://.import/004 Menu.mp3-868e82d6eda0b17109a7aeccd18498cc.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

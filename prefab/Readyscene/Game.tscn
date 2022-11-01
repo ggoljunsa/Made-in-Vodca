@@ -1,0 +1,151 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://stage_select/fonts/DungGeunMo_80.tres" type="DynamicFont" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://prefab/Readyscene/Player.gd" type="Script" id=3]
+[ext_resource path="res://bgm/216b Wario-Man Success.wav" type="AudioStream" id=4]
+[ext_resource path="res://bgm/137a Wario Microgame.wav" type="AudioStream" id=5]
+[ext_resource path="res://prefab/Readyscene/MiniGame.gd" type="Script" id=6]
+[ext_resource path="res://bgm/216c Wario-Man Failure.wav" type="AudioStream" id=7]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 32, 30 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 32, 32.5 )
+
+[node name="MiniGame" type="Node2D"]
+script = ExtResource( 6 )
+
+[node name="Player" type="KinematicBody2D" parent="."]
+position = Vector2( 312, 352 )
+collision_mask = 4
+script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="Player"]
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource( 1 )
+
+[node name="Goal" type="Area2D" parent="."]
+position = Vector2( 417, 355 )
+collision_layer = 0
+
+[node name="Sprite" type="Sprite" parent="Goal"]
+modulate = Color( 1, 0, 0, 1 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Goal"]
+position = Vector2( 0, 0.5 )
+shape = SubResource( 3 )
+
+[node name="Obstacle" type="Area2D" parent="."]
+self_modulate = Color( 0.827451, 0, 1, 1 )
+position = Vector2( 417, 246 )
+collision_layer = 0
+
+[node name="Sprite" type="Sprite" parent="Obstacle"]
+modulate = Color( 0.756863, 0, 1, 1 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacle"]
+position = Vector2( 0, 0.5 )
+shape = SubResource( 3 )
+
+[node name="PausedCanvas" type="CanvasLayer" parent="."]
+
+[node name="UserinterFace" type="Control" parent="PausedCanvas"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="PauseOverLay" type="ColorRect" parent="PausedCanvas/UserinterFace"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.160784, 0.156863, 0.156863, 0.698039 )
+
+[node name="Label" type="Label" parent="PausedCanvas/UserinterFace/PauseOverLay"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -125.801
+margin_top = -160.0
+margin_right = 126.199
+margin_bottom = -60.0
+custom_fonts/font = ExtResource( 1 )
+text = "Paused"
+
+[node name="TitleCanvas" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="TitleCanvas"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.262745, 0.180392, 0.278431, 0.537255 )
+
+[node name="Control" type="Control" parent="TitleCanvas/ColorRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Heart1" type="Sprite" parent="TitleCanvas/ColorRect/Control"]
+self_modulate = Color( 0, 1, 0.0156863, 1 )
+position = Vector2( 304, 574 )
+texture = ExtResource( 2 )
+
+[node name="Heart2" type="Sprite" parent="TitleCanvas/ColorRect/Control"]
+self_modulate = Color( 0, 1, 0.0156863, 1 )
+position = Vector2( 503, 577 )
+texture = ExtResource( 2 )
+
+[node name="Heart3" type="Sprite" parent="TitleCanvas/ColorRect/Control"]
+self_modulate = Color( 0, 1, 0.0156863, 1 )
+position = Vector2( 704, 575 )
+texture = ExtResource( 2 )
+
+[node name="Heart4" type="Sprite" parent="TitleCanvas/ColorRect/Control"]
+self_modulate = Color( 0, 1, 0.0156863, 1 )
+position = Vector2( 937, 576 )
+texture = ExtResource( 2 )
+
+[node name="TextLabel" type="Label" parent="TitleCanvas/ColorRect/Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -189.0
+margin_top = -42.5
+margin_right = 189.0
+margin_bottom = 42.5
+custom_fonts/font = ExtResource( 1 )
+text = "도착해라!"
+
+[node name="ComboLabel" type="Label" parent="TitleCanvas/ColorRect/Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 411.0
+margin_top = -307.0
+margin_right = 533.0
+margin_bottom = -222.0
+custom_fonts/font = ExtResource( 1 )
+text = "0"
+
+[node name="BGM_MiniGameStart" type="AudioStreamPlayer" parent="TitleCanvas/ColorRect/Control"]
+stream = ExtResource( 5 )
+
+[node name="BGM_Success" type="AudioStreamPlayer" parent="TitleCanvas/ColorRect/Control"]
+stream = ExtResource( 4 )
+
+[node name="BGM_Failure" type="AudioStreamPlayer" parent="TitleCanvas/ColorRect/Control"]
+stream = ExtResource( 7 )
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="Goal" to="." method="_on_Goal_body_entered"]
+[connection signal="body_entered" from="Obstacle" to="." method="_on_Obstacle_body_entered"]
+[connection signal="finished" from="TitleCanvas/ColorRect/Control/BGM_MiniGameStart" to="." method="_on_BGM_MiniGameStart_finished"]
+[connection signal="finished" from="TitleCanvas/ColorRect/Control/BGM_Success" to="." method="_on_BGM_Success_finished"]
+[connection signal="finished" from="TitleCanvas/ColorRect/Control/BGM_Failure" to="." method="_on_BGM_Failure_finished"]

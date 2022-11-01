@@ -1,0 +1,23 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/216b Wario-Man Success.wav-46e888385ac18cd4ee58b2733277baca.sample"
+
+[deps]
+
+source_file="res://bgm/216b Wario-Man Success.wav"
+dest_files=[ "res://.import/216b Wario-Man Success.wav-46e888385ac18cd4ee58b2733277baca.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

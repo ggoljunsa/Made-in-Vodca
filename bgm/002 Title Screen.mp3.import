@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/002 Title Screen.mp3-b4e5676f21fa11bf6ae48a1087484b9a.mp3str"
+
+[deps]
+
+source_file="res://bgm/002 Title Screen.mp3"
+dest_files=[ "res://.import/002 Title Screen.mp3-b4e5676f21fa11bf6ae48a1087484b9a.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

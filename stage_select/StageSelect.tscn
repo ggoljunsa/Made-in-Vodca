@@ -1,0 +1,66 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://stage_select/fonts/DungGeunMo_80.tres" type="DynamicFont" id=1]
+[ext_resource path="res://stage_select/buttons/Stage1Button.tscn" type="PackedScene" id=2]
+[ext_resource path="res://stage_select/buttons/Stage2Button.tscn" type="PackedScene" id=3]
+[ext_resource path="res://stage_select/stage_select.gd" type="Script" id=4]
+[ext_resource path="res://bgm/004 Menu.mp3" type="AudioStream" id=5]
+[ext_resource path="res://fade_in/Fadein.tscn" type="PackedScene" id=6]
+[ext_resource path="res://stage_select/buttons/Stg_back_Btn.tscn" type="PackedScene" id=7]
+
+[node name="StageSelect" type="Control"]
+margin_right = 1280.0
+margin_bottom = 720.0
+script = ExtResource( 4 )
+
+[node name="Menu" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Logo" type="Label" parent="Menu"]
+margin_right = 1280.0
+margin_bottom = 85.0
+custom_colors/font_color_shadow = Color( 1, 0.592157, 0, 1 )
+custom_constants/shadow_offset_y = 4
+custom_fonts/font = ExtResource( 1 )
+text = "STAGE SELECT"
+align = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Menu"]
+margin_top = 89.0
+margin_right = 1280.0
+margin_bottom = 402.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Stage1" parent="Menu/HBoxContainer" instance=ExtResource( 2 )]
+margin_right = 638.0
+margin_bottom = 313.0
+size_flags_horizontal = 3
+
+[node name="Stage2" parent="Menu/HBoxContainer" instance=ExtResource( 3 )]
+margin_left = 642.0
+margin_right = 1280.0
+margin_bottom = 313.0
+size_flags_horizontal = 3
+
+[node name="Stg_back_Btn" parent="Menu" instance=ExtResource( 7 )]
+margin_top = 406.0
+margin_right = 1280.0
+margin_bottom = 720.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+flat = false
+scene_to_load = "res://title_screen/TitleScreen.tscn"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+autoplay = true
+
+[node name="Fadein" parent="." instance=ExtResource( 6 )]
+visible = false
+color = Color( 1, 1, 1, 0 )
+
+[connection signal="fade_finished" from="Fadein" to="." method="_on_Fadein_fade_finished"]
